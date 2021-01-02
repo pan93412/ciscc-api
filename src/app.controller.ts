@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import IInfo from './structures/IInfo';
+import ISentRequest from './structures/ISentRequest';
 import ISentResponse from './structures/ISentResponse';
 
 @Controller()
@@ -17,14 +18,15 @@ export class AppController {
     return this.appService.getInfo();
   }
 
-  @Get('/send')
-  async sendMessage(): Promise<ISentResponse> {
-    const message = 'meow';
-    await this.appService.sendMessage(message);
+  @Post('/send')
+  async sendMessage(@Body() message: ISentRequest): Promise<ISentResponse> {
+    const { message: msg } = message;
+
+    await this.appService.sendMessage(msg);
     return {
       success: true,
       data: {
-        message,
+        message: msg,
       },
     };
   }
