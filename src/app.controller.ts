@@ -17,11 +17,11 @@ export class AppController {
   async sendMessage(@Body() message: ISentRequest): Promise<ISentResponse> {
     const { message: msg } = message;
 
-    await this.appService.sendMessage(msg);
+    const resp = await this.appService.sendMessage(msg);
     return {
-      success: true,
+      success: !!resp,
       data: {
-        message: msg,
+        message: resp,
       },
     };
   }
