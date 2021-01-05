@@ -10,11 +10,13 @@ export class AppService {
   bot: Bot;
 
   constructor(private configService: ConfigService) {
-    const token = configService.get('DC_TOKEN');
+    const token = <string>configService.get('DC_TOKEN');
+    const channelId = <string | undefined>configService.get('CHANNEL_ID');
     this.bot = new Bot();
 
     if (token) {
       this.bot.login(token);
+      if (channelId) this.bot.ChannelId = channelId;
     } else {
       throw new Error("You didn't specify 'DC_TOKEN' in your .env file.");
     }
@@ -30,10 +32,10 @@ export class AppService {
     };
   }
 
-  async sendMessage(message: string) {
-    await this.bot.sendMessageObject(
+  async sendMessage(message: string): Promise<string | null> {
+    const resp = await this.bot.sendMessageObject(
       new MessageBuilder().setMessage(message).build(),
     );
-    return message;
+    return resp ? resp.content : null;
   }
 }
