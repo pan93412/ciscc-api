@@ -1742,8 +1742,8 @@ ci-info@^2.0.0:
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
 ciscc-discord@pan93412/ciscc-discord:
-  version "1.1.0"
-  resolved "https://codeload.github.com/pan93412/ciscc-discord/tar.gz/7f7b3c3992d3070eaf05efb6fe9bd27cb28be7e4"
+  version "1.1.0-a"
+  resolved "https://codeload.github.com/pan93412/ciscc-discord/tar.gz/02471311e9cb0bd4f0889265827af39a4ca9b27d"
   dependencies:
     discord.js "^12.5.1"
     ts-node "^9.1.1"
